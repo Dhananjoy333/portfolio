@@ -29,6 +29,11 @@ export interface MaskedProjectsPortalProps {
 
 export interface ProjectsContentProps {
   dividerRef: Ref<HTMLDivElement>;
+  cardRefs: RefObject<(HTMLDivElement | null)[]>;
+}
+
+export interface ProjectStackProps {
+  cardRefs: RefObject<(HTMLDivElement | null)[]>;
 }
 
 export interface ProjectsTypographyProps {

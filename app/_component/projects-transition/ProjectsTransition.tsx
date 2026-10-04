@@ -8,7 +8,6 @@ import MaskedProjectsPortal from "./MaskedProjectsPortal";
 import ProjectsContent from "./ProjectsContent";
 import ProjectsTypography from "./ProjectsTypography";
 import {
-  PROJECTS_BG,
   LETTER_TRAJECTORIES,
   DESKTOP,
   MOBILE,
@@ -30,6 +29,7 @@ export default function ProjectsTransition({ children }: ProjectsTransitionProps
   const projectsWorldRef = useRef<HTMLDivElement>(null); // the MASKED element (portal root)
   const worldInnerRef = useRef<HTMLDivElement>(null); // content wrapper, inside the mask
   const dividerLineRef = useRef<HTMLDivElement>(null);
+  const projectCardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useGSAP(
     () => {
@@ -87,10 +87,41 @@ export default function ProjectsTransition({ children }: ProjectsTransitionProps
             start: "top top",
             end: cfg.end,
             pin: viewport,
-            scrub: 0.6,
+            scrub: 0.4,
             anticipatePin: 1,
             invalidateOnRefresh: true,
           },
+        });
+
+        const projectCards =
+          projectCardRefs.current.filter(Boolean) as HTMLDivElement[];
+
+        // ---------------------------------------------------------------
+        // CARD ENTRANCE ORDER
+        // The data array is [Go Cart, World Quiz, Horizon, Code Box].
+        // The desired entrance is Go Cart → World Quiz → Code Box → Horizon,
+        // with Horizon ending on top. So the entrance indices are [0, 1, 3, 2].
+        // ---------------------------------------------------------------
+        const entranceOrder = [0, 1, 3, 2];
+        const orderedCards = entranceOrder
+          .map((i) => projectCards[i])
+          .filter(Boolean) as HTMLDivElement[];
+        const totalCards = orderedCards.length;
+
+        // INITIAL STATE — every card starts hidden and below the viewport/stack.
+        // Permanent z-index ordering: Horizon (40) > Code Box (30) > World Quiz (20) > Go Cart (10).
+        // Since z-index is strictly monotonic and set upfront, no z-index pop or flicker can occur.
+        orderedCards.forEach((card, seq) => {
+          gsap.set(card, {
+            y: () => window.innerHeight * 0.75,
+            x: 0,
+            scale: 1,
+            rotation: 0,
+            opacity: 1,
+            visibility: "hidden",
+            zIndex: (seq + 1) * 10,
+            transformOrigin: "50% 50%",
+          });
         });
 
         // 1. Hero recedes, PROJECTS rises (0 -> 0.38)
@@ -104,7 +135,7 @@ export default function ProjectsTransition({ children }: ProjectsTransitionProps
         tl.fromTo(
           wordWrapper,
           { y: () => window.innerHeight * cfg.wordFromY, autoAlpha: 0, scale: cfg.wordFromScale },
-          { y: 0, autoAlpha: 1, scale: 1, ease: "power2.out", duration: 0.38 },
+          { y: 0, autoAlpha: 1, scale: 1, ease: "power2.out", duration: 0.25 },
           0
         );
 
@@ -206,6 +237,100 @@ export default function ProjectsTransition({ children }: ProjectsTransitionProps
           );
         }
 
+        // ---------------------------------------------------------------
+        // 6b. SEQUENTIAL PHYSICAL CARD STACKING ANIMATION
+        //
+        // Physical card placement animation (bottom -> up -> front):
+        // 1. Every card starts below the stack/viewport (y: window.innerHeight * 0.75).
+        // 2. DOM/z-index order is permanent and strictly monotonic:
+        //    Horizon (40) > Code Box (30) > World Quiz (20) > Go Cart (10).
+        //    Because z-indexes never mutate during scrub, there is zero flicker.
+        // 3. Card 1 (Go Cart) rises from below first, settling at (0, 0, 0).
+        // 4. Each subsequent card (World Quiz, Code Box, Horizon) rises UPWARD
+        //    from below the stack directly into the front position (y: 0, x: 0).
+        // 5. At the exact same time as a new card rises, all previously entered
+        //    cards are physically pushed DOWN, slightly to the RIGHT, and rotated
+        //    subtly CLOCKWISE, allowing their top-right corners to remain visible.
+        // 6. Horizon finishes at the top/front of the stack.
+        // ---------------------------------------------------------------
+        const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+        const STACK_Y = isMobile ? 18 : 22;      // downward push per depth level
+        const STACK_X = isMobile ? 6 : 10;       // rightward push per depth level
+        const ROTATIONS = isMobile ? [0, 1.4, 2.5, 3.8] : [0, 2.0, 3.5, 5.0];
+        // Timing sequence:
+        // 1. Cat mask expands from 0.44 to 0.88 and clears at 0.89.
+        // 2. Card 0 enters at 0.74 (as the mask is almost completely gone) and settles at 0.88.
+        // 3. When the mask drops, Card 0 is completely visible and settled alone.
+        // 4. After a pause (at 1.00), Card 1 begins its stacked entrance.
+        // 5. Subsequent cards follow in deliberate, clean succession.
+        const CARD_STARTS = [0.74, 1.00, 1.18, 1.36];
+        const ENTRANCE_DURATION = 0.14;          // duration of each card's arrival and push
+
+        orderedCards.forEach((card, seq) => {
+          const start = CARD_STARTS[seq];
+
+          // Reveal card at the start of its entrance.
+          // Note: z-index is already permanently configured in initial state.
+          tl.set(card, { visibility: "visible" }, start);
+
+          // Incoming card starts substantially BELOW the stack and travels UPWARD to y: 0.
+          tl.fromTo(
+            card,
+            {
+              y: () => window.innerHeight * 0.75,
+              x: 0,
+              rotation: 0,
+              scale: 1,
+            },
+            {
+              y: 0,
+              x: 0,
+              rotation: 0,
+              scale: 1,
+              duration: ENTRANCE_DURATION,
+              ease: "power2.out",
+            },
+            start
+          );
+
+          // SIMULTANEOUSLY push previous cards down/right and rotate clockwise
+          for (let prev = 0; prev < seq; prev++) {
+            const depth = seq - prev; // 1 for immediately prior card, 2 for older, etc.
+            tl.to(
+              orderedCards[prev],
+              {
+                y: depth * STACK_Y,
+                x: depth * STACK_X,
+                rotation: ROTATIONS[depth],
+                scale: 1,
+                duration: ENTRANCE_DURATION,
+                ease: "power2.out",
+              },
+              start
+            );
+          }
+        });
+
+        // Lock final deterministic state after the sequence completes.
+        // Guarantees pixel-perfect stack state during scrubbing in both directions.
+        const settleTime = CARD_STARTS[totalCards - 1] + ENTRANCE_DURATION;
+        orderedCards.forEach((card, seq) => {
+          const depth = (totalCards - 1) - seq; // 0 for Horizon (top), 3 for Go Cart (bottom)
+          tl.set(
+            card,
+            {
+              y: depth * STACK_Y,
+              x: depth * STACK_X,
+              rotation: ROTATIONS[depth],
+              scale: 1,
+              opacity: 1,
+              visibility: "visible",
+              zIndex: (seq + 1) * 10,
+            },
+            settleTime
+          );
+        });
+
         // 7. Hand-off: the mask now covers the viewport, so drop it entirely.
         // From here the Projects section is a normal, unmasked block in the document flow.
         tl.set(projectsWorld, { maskImage: "none", WebkitMaskImage: "none" }, 0.89);
@@ -258,7 +383,10 @@ export default function ProjectsTransition({ children }: ProjectsTransitionProps
 
         {/* 2. MASKED PORTAL: cat.png is its CSS mask; ProjectsContent is its child */}
         <MaskedProjectsPortal portalRef={projectsWorldRef} innerRef={worldInnerRef}>
-          <ProjectsContent dividerRef={dividerLineRef} />
+          <ProjectsContent
+            dividerRef={dividerLineRef}
+            cardRefs={projectCardRefs}
+          />
         </MaskedProjectsPortal>
 
         {/* 3. TYPOGRAPHY STAGE: P R O J [ gap ] E C T S
@@ -269,21 +397,6 @@ export default function ProjectsTransition({ children }: ProjectsTransitionProps
           letterRefs={letterRefs}
         />
       </div>
-
-      {/* 4. PROJECTS SECTION RUNWAY — same surface as the masked portal, so the hand-off has no seam */}
-      <section
-        id="works"
-        className={`w-full px-6 sm:px-10 md:px-12 lg:px-16 py-16 ${PROJECTS_BG} flex flex-col items-center justify-start min-h-[50vh]`}
-      >
-        <div className="w-full max-w-[1580px] mx-auto py-16 border-t border-dashed border-neutral-300 flex flex-col items-center justify-center gap-3 text-neutral-500">
-          <span className="font-mono text-xs tracking-widest uppercase">
-            WORKS SECTION READY
-          </span>
-          <p className="font-sans text-xs text-neutral-500">
-            Project cards and showcase grid will be implemented here.
-          </p>
-        </div>
-      </section>
     </div>
   );
 }
