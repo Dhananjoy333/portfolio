@@ -3,6 +3,7 @@ import Hero from "./_component/Hero";
 import ProjectsTransition from "./_component/projects-transition/ProjectsTransition";
 import CreamyTransition from "./_component/CreamyTransition";
 import AboutSection from "./_component/about/AboutSection";
+import EducationSection from "./_component/education/EducationSection";
 
 export default function Home() {
   return (
@@ -20,6 +21,9 @@ export default function Home() {
 
       {/* About Me Section */}
       <AboutSection />
+
+      {/* Education Section */}
+      <EducationSection />
     </main>
   );
 }
