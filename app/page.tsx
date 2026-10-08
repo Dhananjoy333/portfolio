@@ -1,6 +1,8 @@
 import Navbar from "./_component/Navbar";
 import Hero from "./_component/Hero";
-import ProjectsTransition from "./_component/ProjectsTransition";
+import ProjectsTransition from "./_component/projects-transition/ProjectsTransition";
+import CreamyTransition from "./_component/CreamyTransition";
+import AboutSection from "./_component/about/AboutSection";
 
 export default function Home() {
   return (
@@ -12,6 +14,12 @@ export default function Home() {
           <Hero />
         </div>
       </ProjectsTransition>
+
+      {/* Creamy Transition Divider */}
+      <CreamyTransition />
+
+      {/* About Me Section */}
+      <AboutSection />
     </main>
   );
 }
