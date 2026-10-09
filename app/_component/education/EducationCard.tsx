@@ -37,13 +37,13 @@ export default function EducationCard({ item }: EducationCardProps) {
 
   return (
     <div
-      className={`relative z-10 w-full max-w-120 p-6 sm:p-7 rounded-3xl border ${
+      className={`relative z-10 w-full max-w-120 p-4 sm:p-6 2xl:p-7 rounded-2xl sm:rounded-3xl border ${
         variantStyles[item.variant]
       } ${item.rotation} transition-all duration-300 hover:rotate-0 hover:-translate-y-1.5`}
     >
       {/* Top header row: Logo + Year Pill */}
-      <div className="flex items-center justify-between gap-4 mb-4">
-        <div className="w-12 h-12 rounded-2xl bg-white border border-neutral-200/80 p-1.5 shadow-2xs flex items-center justify-center shrink-0">
+      <div className="flex items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/80 p-1.5 shadow-2xs flex items-center justify-center shrink-0">
           <Image
             src={item.logo}
             alt={`${item.institution} logo`}
@@ -54,7 +54,7 @@ export default function EducationCard({ item }: EducationCardProps) {
         </div>
 
         <span
-          className={`font-mono text-[11px] font-bold px-3 py-1 rounded-full border shadow-2xs select-none ${
+          className={`font-mono text-[10px] sm:text-[11px] font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border shadow-2xs select-none ${
             pillStyles[item.year] ||
             "bg-neutral-100 text-neutral-800 border-neutral-200"
           }`}
@@ -64,17 +64,17 @@ export default function EducationCard({ item }: EducationCardProps) {
       </div>
 
       {/* Title */}
-      <h3 className="font-display font-black text-2xl sm:text-[25px] uppercase tracking-tight text-neutral-900 leading-tight mb-1">
+      <h3 className="font-display font-black text-xl sm:text-2xl 2xl:text-[25px] uppercase tracking-tight text-neutral-900 leading-tight mb-1">
         {item.title}
       </h3>
 
       {/* Institution name with italic editorial accent */}
-      <p className="font-editorial italic text-base sm:text-lg text-neutral-700 font-medium mb-3.5 leading-snug">
+      <p className="font-editorial italic text-sm sm:text-base 2xl:text-lg text-neutral-700 font-medium mb-2.5 sm:mb-3.5 leading-snug">
         {item.institution}
       </p>
 
       {/* Description */}
-      <p className="font-sans text-[13px] sm:text-sm text-neutral-600 leading-relaxed">
+      <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-neutral-600 leading-relaxed">
         {item.description}
       </p>
     </div>

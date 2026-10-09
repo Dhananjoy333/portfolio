@@ -1,6 +1,6 @@
 import type React from "react";
-import Image from "next/image";
-import Link from "next/link";
+
+const IMAGEKIT_URL = process.env.NEXT_PUBLIC_IMAGEKIT_URL;
 
 export default function AboutIntro() {
   return (
@@ -17,8 +17,8 @@ export default function AboutIntro() {
         </div>
 
         {/* Main Heading: BEHIND THE CODE */}
-        <div className="about-heading select-none relative mb-6 sm:mb-8">
-          <h2 className="font-display font-black uppercase text-neutral-900 text-6xl sm:text-7xl md:text-8xl lg:text-[100px] xl:text-[110px] leading-[0.88] tracking-tight">
+        <div className="about-heading select-none relative mb-5 sm:mb-8">
+          <h2 className="font-display font-black uppercase text-neutral-900 text-4xl sm:text-6xl md:text-7xl lg:text-[76px] xl:text-[88px] 2xl:text-[110px] leading-[0.88] tracking-tight">
             <span className="block">BEHIND</span>
             <span className="relative inline-block mt-1 sm:mt-2">
               {/* Pastel yellow highlighter background */}
@@ -38,7 +38,7 @@ export default function AboutIntro() {
                   stroke="currentColor"
                   strokeWidth="4"
                   strokeLinecap="round"
-                  className="w-7 h-7 sm:w-9 sm:h-9"
+                  className="w-6 h-6 sm:w-9 sm:h-9"
                 >
                   <path d="M 8 26 L 4 16" />
                   <path d="M 18 22 L 18 8" />
@@ -50,7 +50,7 @@ export default function AboutIntro() {
         </div>
 
         {/* Description Paragraph */}
-        <p className="about-desc font-sans text-neutral-700 text-sm sm:text-base lg:text-[16px] xl:text-[17px] leading-relaxed max-w-xl">
+        <p className="about-desc font-sans text-neutral-700 text-xs sm:text-sm lg:text-sm xl:text-[15px] 2xl:text-[17px] leading-relaxed max-w-xl">
           I&apos;m Dhananjoy Kumar Brahma, a full-stack developer who enjoys turning
           ideas into real, interactive products. I love building clean,
           performant web experiences, learning new technologies, and working on
@@ -59,49 +59,49 @@ export default function AboutIntro() {
       </div>
 
       {/* Bottom Section: Stats & CTA */}
-      <div className="mt-10 sm:mt-12 lg:mt-14 relative z-10">
+      <div className="mt-8 sm:mt-10 lg:mt-12 2xl:mt-14 relative z-10">
         {/* Stats Row */}
-        <div className="about-stats flex items-center gap-7 sm:gap-10 pb-8 sm:pb-9">
+        <div className="about-stats flex items-center gap-4 sm:gap-7 lg:gap-8 2xl:gap-10 pb-6 sm:pb-8 2xl:pb-9">
           {/* Stat 1 */}
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="font-display font-black text-4xl sm:text-5xl text-neutral-900 leading-none tracking-tight">
+              <span className="font-display font-black text-3xl sm:text-4xl 2xl:text-5xl text-neutral-900 leading-none tracking-tight">
                 4+
               </span>
             </div>
-            <div className="flex items-center gap-1.5 mt-1.5">
-              <span className="font-sans text-xs sm:text-sm font-medium text-neutral-600">
+            <div className="flex items-center gap-1.5 mt-1 sm:mt-1.5">
+              <span className="font-sans text-[11px] sm:text-xs 2xl:text-sm font-medium text-neutral-600">
                 Projects
               </span>
             </div>
           </div>
 
           {/* Divider */}
-          <span className="h-9 w-px bg-neutral-200" />
+          <span className="h-7 sm:h-9 w-px bg-neutral-200" />
 
           {/* Stat 2 */}
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="font-display font-black text-4xl sm:text-5xl text-neutral-900 leading-none tracking-tight">
+              <span className="font-display font-black text-3xl sm:text-4xl 2xl:text-5xl text-neutral-900 leading-none tracking-tight">
                 2+
               </span>
             </div>
-            <span className="font-sans text-xs sm:text-sm font-medium text-neutral-600 mt-1.5">
+            <span className="font-sans text-[11px] sm:text-xs 2xl:text-sm font-medium text-neutral-600 mt-1 sm:mt-1.5">
               Years Learning
             </span>
           </div>
 
           {/* Divider */}
-          <span className="h-9 w-px bg-neutral-200" />
+          <span className="h-7 sm:h-9 w-px bg-neutral-200" />
 
           {/* Stat 3 */}
           <div className="flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="font-display font-black text-4xl sm:text-5xl text-neutral-900 leading-none tracking-tight">
+              <span className="font-display font-black text-3xl sm:text-4xl 2xl:text-5xl text-neutral-900 leading-none tracking-tight">
                 ∞
               </span>
             </div>
-            <span className="font-sans text-xs sm:text-sm font-medium text-neutral-600 mt-1.5">
+            <span className="font-sans text-[11px] sm:text-xs 2xl:text-sm font-medium text-neutral-600 mt-1 sm:mt-1.5">
               Curiosity
             </span>
           </div>
@@ -110,12 +110,12 @@ export default function AboutIntro() {
         {/* CV Download Button */}
         <div className="about-cta flex items-center gap-4">
           <a
-            href="/Dhananjoy_Brahma_CV.pdf"
+            href={`${IMAGEKIT_URL}/img/CV.pdf`}
             download
-            className="inline-flex items-center gap-2.5 px-6 sm:px-7 py-3 sm:py-3.5 bg-neutral-950 text-white text-xs sm:text-sm font-medium font-sans rounded-full hover:bg-neutral-800 active:scale-95 transition-all duration-200 shadow-sm group select-none"
+            className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 2xl:px-7 2xl:py-3.5 bg-neutral-950 text-white text-xs sm:text-sm font-medium font-sans rounded-full hover:bg-neutral-800 active:scale-95 transition-all duration-200 shadow-sm group select-none"
           >
             <span>Download CV</span>
-            <span className="text-base group-hover:translate-y-0.5 transition-transform duration-200">
+            <span className="text-sm sm:text-base group-hover:translate-y-0.5 transition-transform duration-200">
               ↓
             </span>
           </a>

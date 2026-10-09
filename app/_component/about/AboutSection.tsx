@@ -76,10 +76,10 @@ export default function AboutSection() {
     <section
       id="about"
       ref={containerRef}
-      className="w-full bg-[#FAF8F5] relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28 text-neutral-900"
+      className="w-full bg-[#FAF8F5] relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 2xl:py-28 text-neutral-900"
       aria-label="About Me Section"
     >
-      <div className="w-full max-w-[1580px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20">
+      <div className="w-full max-w-[1580px] mx-auto px-4 sm:px-8 md:px-10 lg:px-14 xl:px-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-8 xl:gap-12 items-start">
           {/* Left Column: Heading, Description, Stats & CTA */}
           <div className="w-full lg:col-span-5 xl:col-span-4 lg:sticky lg:top-24">

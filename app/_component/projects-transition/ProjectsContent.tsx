@@ -8,10 +8,10 @@ export default function ProjectsContent({
   return (
     <div className="w-full">
       {/* Header */}
-      <div className="w-full flex flex-col gap-6 md:gap-8 pt-8 sm:pt-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 select-none">
+      <div className="w-full flex flex-col gap-4 sm:gap-6 md:gap-8 pt-3 sm:pt-6 lg:pt-6 2xl:pt-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-4 select-none">
           <div className="flex flex-col">
-            <span className="font-editorial italic text-3xl sm:text-4xl md:text-5xl text-neutral-500 font-normal leading-tight">
+            <span className="font-editorial italic text-2xl sm:text-3xl md:text-4xl lg:text-4xl 2xl:text-5xl text-neutral-500 font-normal leading-tight">
               Featured
             </span>
 
@@ -21,10 +21,12 @@ export default function ProjectsContent({
                 font-black
                 uppercase
                 text-neutral-900
-                text-6xl
-                sm:text-7xl
-                md:text-8xl
-                lg:text-9xl
+                text-4xl
+                sm:text-6xl
+                md:text-7xl
+                lg:text-7xl
+                xl:text-8xl
+                2xl:text-9xl
                 leading-[0.84]
                 tracking-tight
               "
@@ -33,14 +35,14 @@ export default function ProjectsContent({
             </h3>
           </div>
 
-          <p className="font-sans text-xs sm:text-sm md:text-base lg:text-[17px] text-neutral-500 font-medium leading-relaxed tracking-tight max-w-xs sm:max-w-sm text-right self-end pb-1 md:pb-2">
+          <p className="font-sans text-[11px] sm:text-xs md:text-sm lg:text-sm 2xl:text-[17px] text-neutral-500 font-medium leading-relaxed tracking-tight max-w-xs sm:max-w-sm text-left md:text-right self-start md:self-end pb-1 md:pb-2">
             See how I transform concepts into engaging digital experience
           </p>
         </div>
 
         <div
           ref={dividerRef}
-          className="w-full h-px bg-neutral-300 origin-left mt-2"
+          className="w-full h-px bg-neutral-300 origin-left mt-1 sm:mt-2"
         />
       </div>
 

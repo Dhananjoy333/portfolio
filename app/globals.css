@@ -5,6 +5,16 @@
   --foreground: #111111;
 }
 
+/* Hide scrollbar across all browsers while keeping scrolling active */
+* {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
 html,
 body {
   background-color: #ffffff;
@@ -15,6 +25,8 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 @theme inline {
   --font-sans: var(--font-inter);

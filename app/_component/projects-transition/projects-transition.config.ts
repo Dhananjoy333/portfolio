@@ -14,8 +14,12 @@ import type { Config, LetterTrajectory } from "./types";
 //   --cat-dx / --cat-dy = offset of the cat's center from the viewport center.
 // At rest they equal the offset of the PROJ_ECTS gap; they tween to 0 as the cat grows.
 // ---------------------------------------------------------------------------
-export const CAT_MASK = 'url("/img/cat.png")';
-export const CAT_POSITION = "calc(50% + var(--cat-dx, 0px)) calc(50% + var(--cat-dy, 0px))";
+const IMAGEKIT_URL = process.env.NEXT_PUBLIC_IMAGEKIT_URL;
+
+export const CAT_MASK = `url("${IMAGEKIT_URL}/img/cat.png")`;
+
+export const CAT_POSITION =
+  "calc(50% + var(--cat-dx, 0px)) calc(50% + var(--cat-dy, 0px))";
 
 export const CAT_MASK_STYLE: React.CSSProperties = {
   WebkitMaskImage: CAT_MASK,
