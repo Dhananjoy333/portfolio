@@ -9,7 +9,7 @@ export interface TechItemProps {
 
 export default function TechItem({ name, iconSrc, iconSvg }: TechItemProps) {
   return (
-    <div className="tech-item group relative flex flex-col items-center justify-center py-2.5 px-3 sm:py-3 sm:px-3.5 min-w-[74px] sm:min-w-[82px] rounded-xl sm:rounded-2xl bg-neutral-50/80 hover:bg-white border border-neutral-200/60 hover:border-neutral-300 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-200 cursor-default select-none shrink-0">
+    <div className="tech-item group relative flex flex-col items-center justify-center py-2.5 px-3 sm:py-3 sm:px-3.5 min-w-18.5 sm:min-w-20.5 rounded-xl sm:rounded-2xl bg-neutral-50/80 hover:bg-white border border-neutral-200/60 hover:border-neutral-300 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.06)] hover:-translate-y-0.5 transition-all duration-200 cursor-default select-none shrink-0">
       <div className="w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center shrink-0">
         {iconSrc ? (
           <Image

@@ -83,6 +83,7 @@ export default function ProjectsTransition({ children }: ProjectsTransitionProps
       const buildTimeline = (cfg: Config) => {
         const tl = gsap.timeline({
           scrollTrigger: {
+            id: "projects-trigger",
             trigger: container,
             start: "top top",
             end: cfg.end,
@@ -124,19 +125,22 @@ export default function ProjectsTransition({ children }: ProjectsTransitionProps
           });
         });
 
-        // 1. Hero recedes, PROJECTS rises (0 -> 0.38)
+        // 1. Hero recedes smoothly, PROJECTS rises (0 -> 0.38)
+        // Set hero initial steady state at 0, begin smooth ease-in recede at 0.02
+        // to eliminate any abrupt initial jerk when scroll starts.
+        gsap.set(heroWrapper, { autoAlpha: 1, y: 0, scale: 1 });
         tl.fromTo(
           heroWrapper,
           { autoAlpha: 1, y: 0, scale: 1 },
-          { autoAlpha: 0, y: cfg.heroY, scale: cfg.heroScale, ease: "power1.out", duration: 0.36 },
-          0
+          { autoAlpha: 0, y: cfg.heroY, scale: cfg.heroScale, ease: "power1.in", duration: 0.36 },
+          0.02
         );
 
         tl.fromTo(
           wordWrapper,
           { y: () => window.innerHeight * cfg.wordFromY, autoAlpha: 0, scale: cfg.wordFromScale },
           { y: 0, autoAlpha: 1, scale: 1, ease: "power2.out", duration: 0.25 },
-          0
+          0.02
         );
 
         // The cat window rides up with the word: same ease, same duration, and the same
@@ -365,18 +369,19 @@ export default function ProjectsTransition({ children }: ProjectsTransitionProps
   return (
     <div
       ref={containerRef}
+      id="projects"
       className="relative w-full bg-white select-none"
       aria-label="Hero to Projects Section Transition"
     >
       {/* PINNED VIEWPORT STAGE */}
       <div
         ref={viewportRef}
-        className="w-full h-screen relative overflow-hidden bg-white flex items-center justify-center"
+        className="w-full h-screen relative overflow-hidden bg-white flex items-center justify-center will-change-transform"
       >
         {/* 1. HERO LAYER */}
         <div
           ref={heroWrapperRef}
-          className="absolute inset-0 w-full h-full flex flex-col items-center justify-start z-10"
+          className="absolute inset-0 w-full h-full flex flex-col items-center justify-start z-10 will-change-[transform,opacity]"
         >
           {children}
         </div>

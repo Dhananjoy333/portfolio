@@ -10,12 +10,15 @@ export default function ProjectStack({ cardRefs }: ProjectStackProps) {
       className="
         relative
         w-full
-        min-h-190
-        sm:min-h-205
-        lg:min-h-225
-        mt-12
-        sm:mt-16
-        lg:mt-20
+        min-h-130
+        sm:min-h-160
+        md:min-h-180
+        lg:min-h-180
+        2xl:min-h-225
+        mt-3
+        sm:mt-5
+        lg:mt-5
+        2xl:mt-16
       "
     >
       {projects.map((project, index) => (

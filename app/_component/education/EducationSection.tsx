@@ -8,6 +8,8 @@ import EducationCard, { type EducationItem } from "./EducationCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const IMAGEKIT_URL = process.env.NEXT_PUBLIC_IMAGEKIT_URL;
+
 export default function EducationSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const desktopTimelineRef = useRef<HTMLDivElement>(null);
@@ -41,7 +43,7 @@ export default function EducationSection() {
       institution: "The Reality Public School",
       description:
         "Completed my CBSE Boards exam on subjects Maths, English, Science, Social Science, Hindi, and Computer.",
-      logo: "/img/rps.png",
+      logo: `${IMAGEKIT_URL}/img/rps.png`,
       variant: "yellow",
       position: "right",
       rotation: "rotate-1",
@@ -53,7 +55,7 @@ export default function EducationSection() {
       institution: "St. Francis D'Assisi Senior Secondary School, Guwahati",
       description:
         "Completed higher secondary with Science stream specializing in Maths, Physics, Chemistry (MPC).",
-      logo: "/img/HS.png",
+      logo: `${IMAGEKIT_URL}/img/HS.png`,
       variant: "white",
       position: "left",
       rotation: "-rotate-1",
@@ -65,7 +67,7 @@ export default function EducationSection() {
       institution: "National Institute of Technology Nagaland",
       description:
         "Graduated with a degree in Mechanical Engineering, developing problem-solving skills, discipline, and a strong technical foundation.",
-      logo: "/img/nit.png",
+      logo: `${IMAGEKIT_URL}/img/nit.png`,
       variant: "yellow",
       position: "right",
       rotation: "rotate-1",
@@ -77,7 +79,7 @@ export default function EducationSection() {
       institution: "Indian Institute of Technology Guwahati",
       description:
         "Currently enrolled in a course learning about AI/ML architecture like CNN, GAN, Transformers etc.",
-      logo: "/img/iit.png",
+      logo: `${IMAGEKIT_URL}/img/iit.png`,
       variant: "white",
       position: "left",
       rotation: "-rotate-1",
@@ -277,7 +279,7 @@ export default function EducationSection() {
     <section
       id="education"
       ref={containerRef}
-      className="w-full bg-[#FAF8F5] relative overflow-hidden py-16 sm:py-20 md:py-24 lg:py-28 text-neutral-900"
+      className="w-full bg-[#FAF8F5] relative overflow-hidden py-12 sm:py-16 md:py-20 lg:py-24 2xl:py-28 text-neutral-900"
       aria-label="Education Section"
     >
       {/* Background soft pastel ambient circles (as in reference) */}
@@ -290,7 +292,7 @@ export default function EducationSection() {
         className="absolute -bottom-16 -left-16 w-105 h-105 rounded-full bg-amber-200/40 blur-3xl pointer-events-none z-0"
       />
 
-      <div className="w-full max-w-[1580px] mx-auto px-6 sm:px-10 md:px-12 lg:px-16 xl:px-20 relative z-10">
+      <div className="w-full max-w-[1580px] mx-auto px-4 sm:px-8 md:px-10 lg:px-14 xl:px-20 relative z-10">
         {/* =========================================================================
             DESKTOP TIMELINE (md: and above): Alternating Left/Right Organic Journey
            ========================================================================= */}
@@ -330,7 +332,7 @@ export default function EducationSection() {
 
               {/* Main Heading: FROM HERE TO CODE */}
               <div className="edu-heading select-none relative mb-4">
-                <h2 className="font-display font-black uppercase text-neutral-900 text-5xl lg:text-6xl xl:text-7xl leading-[0.88] tracking-tight">
+                <h2 className="font-display font-black uppercase text-neutral-900 text-4xl sm:text-5xl lg:text-5xl xl:text-6xl 2xl:text-7xl leading-[0.88] tracking-tight">
                   <span className="block">FROM HERE</span>
                   <span className="relative inline-block mt-1 sm:mt-2">
                     {/* Yellow marker highlight */}
@@ -403,7 +405,7 @@ export default function EducationSection() {
 
             {/* Right Column: Card 1 + "Where it all started." annotation */}
             <div className="edu-card-wrap relative flex items-center pl-2">
-              <div className="relative w-full max-w-120 rotate-2">
+              <div className="relative w-full xl:max-w-100 2xl:max-w-120 rotate-2">
                 {/* 3 doodle rays above Card 1 */}
                 <div className="absolute -top-7 right-4 rotate-26 doodle-float text-neutral-900 pointer-events-none select-none">
                   <svg
@@ -463,7 +465,7 @@ export default function EducationSection() {
           <div className="grid grid-cols-[1.1fr_auto_1.1fr] items-center gap-6 lg:gap-10 mb-14 lg:mb-20">
             {/* Left Column: Card 2 + "Stronger foundation." annotation & scribble */}
             <div className="edu-card-wrap relative flex justify-end pr-2">
-              <div className="relative w-full max-w-120 flex justify-end -rotate-4">
+              <div className="relative w-full xl:max-w-100 2xl:max-w-120 flex justify-end -rotate-4">
                 {/* Annotation to the left: looped scribble + curved arrow */}
                 <div
                   aria-hidden="true"
@@ -589,11 +591,11 @@ export default function EducationSection() {
 
             {/* Right Column: Card 3 + "Learned to solve problems." annotation */}
             <div className="edu-card-wrap relative flex items-center pl-2">
-              <div className="relative w-full max-w-120 rotate-6">
+              <div className="relative w-full xl:max-w-100 2xl:max-w-120 rotate-6">
                 <EducationCard item={educationList[2]} />
 
                 {/* Annotation to the right: "Learned to solve problems." with curved arrow */}
-                 <div
+                <div
                   aria-hidden="true"
                   className="hidden xl:block absolute -right-28 top-8
              select-none pointer-events-none"
@@ -632,7 +634,7 @@ export default function EducationSection() {
           <div className="grid grid-cols-[1.1fr_auto_1.1fr] items-center gap-6 lg:gap-10 mb-8">
             {/* Left Column: Card 4 + "Exploring what's next." annotation */}
             <div className="edu-card-wrap relative flex justify-end pr-2">
-              <div className="relative w-full max-w-120 flex justify-end -rotate-2">
+              <div className="relative w-full xl:max-w-100 2xl:max-w-120 flex justify-end -rotate-2">
                 {/* Annotation to the left: "Exploring what's next." with curved arrow */}
                 <div
                   aria-hidden="true"
@@ -712,7 +714,7 @@ export default function EducationSection() {
             </div>
 
             <div className="edu-heading select-none relative mb-3">
-              <h2 className="font-display font-black uppercase text-neutral-900 text-4xl sm:text-5xl leading-[0.88] tracking-tight">
+              <h2 className="font-display font-black uppercase text-neutral-900 text-3xl sm:text-4xl md:text-5xl leading-[0.88] tracking-tight">
                 <span className="block">FROM HERE</span>
                 <span className="relative inline-block mt-1">
                   <span

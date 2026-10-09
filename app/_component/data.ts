@@ -2,64 +2,35 @@ export interface Project {
   id: string;
   title: string;
   year: string;
-
   image: string;
-
   techStack: {
     name: string;
     icon: string;
   }[];
-
   description: string;
-
   liveUrl: string;
   githubUrl: string;
 }
+
+const IMAGEKIT_URL = process.env.NEXT_PUBLIC_IMAGEKIT_URL;
 
 export const projects: Project[] = [
   {
     id: "go-cart",
     title: "Go Cart",
     year: "2026",
-    image: "/img/goCart.png",
+    image: `${IMAGEKIT_URL}/img/goCart.png`,
 
     techStack: [
-      {
-        name: "Next.js",
-        icon: "/icons/nextjs.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "/icons/tailwind.svg",
-      },
-      {
-        name: "NeonDB",
-        icon: "/icons/neon.svg",
-      },
-      {
-        name: "Clerk",
-        icon: "/icons/clerk.svg",
-      },
-      {
-        name: "Inngest",
-        icon: "/icons/inngest.svg",
-      },
-      {
-        name: "Prisma",
-        icon: "/icons/prisma.svg",
-      },
-      {
-        name: "Redux Toolkit",
-        icon: "/icons/redux.svg",
-      },
-      {
-        name: "Stripe",
-        icon: "/icons/stripe.svg",
-      },
-      {
-        name: "Vercel",
-        icon: "/icons/vercel.svg",
-      },
+      { name: "Next.js", icon: `${IMAGEKIT_URL}/icons/nextjs.svg` },
+      { name: "Tailwind", icon: `${IMAGEKIT_URL}/icons/tailwind.svg` },
+      { name: "NeonDB", icon: `${IMAGEKIT_URL}/icons/neon.svg` },
+      { name: "Clerk", icon: `${IMAGEKIT_URL}/icons/clerk.svg` },
+      { name: "Inngest", icon: `${IMAGEKIT_URL}/icons/inngest.svg` },
+      { name: "Prisma", icon: `${IMAGEKIT_URL}/icons/prisma.svg` },
+      { name: "Redux Toolkit", icon: `${IMAGEKIT_URL}/icons/redux.svg` },
+      { name: "Stripe", icon: `${IMAGEKIT_URL}/icons/stripe.svg` },
+      { name: "Vercel", icon: `${IMAGEKIT_URL}/icons/vercel.svg` },
     ],
 
     description:
@@ -73,33 +44,15 @@ export const projects: Project[] = [
     id: "world-quiz",
     title: "World Quiz",
     year: "2025",
-    image: "/img/worldQuiz.png",
+    image: `${IMAGEKIT_URL}/img/worldQuiz.png`,
 
     techStack: [
-      {
-        name: "Next.js",
-        icon: "/icons/nextjs.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "/icons/tailwind.svg",
-      },
-      {
-        name: "Neon",
-        icon: "/icons/neon.svg",
-      },
-      {
-        name: "Clerk",
-        icon: "/icons/clerk.svg",
-      },
-      {
-        name: "Zustand",
-        icon: "/icons/zustand.jpg",
-      },
-      {
-        name: "Vercel",
-        icon: "/icons/vercel.svg",
-      },
+      { name: "Next.js", icon: `${IMAGEKIT_URL}/icons/nextjs.svg` },
+      { name: "Tailwind", icon: `${IMAGEKIT_URL}/icons/tailwind.svg` },
+      { name: "Neon", icon: `${IMAGEKIT_URL}/icons/neon.svg` },
+      { name: "Clerk", icon: `${IMAGEKIT_URL}/icons/clerk.svg` },
+      { name: "Zustand", icon: `${IMAGEKIT_URL}/icons/zustand.jpg` },
+      { name: "Vercel", icon: `${IMAGEKIT_URL}/icons/vercel.svg` },
     ],
 
     description:
@@ -113,29 +66,14 @@ export const projects: Project[] = [
     id: "byte_battle",
     title: "Byte Battle",
     year: "2026",
-    image: "/img/horizon.png",
+    image: `${IMAGEKIT_URL}/img/horizon.png`,
 
     techStack: [
-      {
-        name: "Next.js",
-        icon: "/icons/nextjs.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "/icons/tailwind.svg",
-      },
-      {
-        name: "GSAP",
-        icon: "/icons/GSAPIcon.svg",
-      },
-      {
-        name: "Zustand",
-        icon: "/icons/zustand.jpg",
-      },
-      {
-        name: "Vercel",
-        icon: "/icons/vercel.svg",
-      },
+      { name: "Next.js", icon: `${IMAGEKIT_URL}/icons/nextjs.svg` },
+      { name: "Tailwind", icon: `${IMAGEKIT_URL}/icons/tailwind.svg` },
+      { name: "GSAP", icon: `${IMAGEKIT_URL}/icons/GSAPIcon.svg` },
+      { name: "Zustand", icon: `${IMAGEKIT_URL}/icons/zustand.jpg` },
+      { name: "Vercel", icon: `${IMAGEKIT_URL}/icons/vercel.svg` },
     ],
 
     description:
@@ -149,45 +87,18 @@ export const projects: Project[] = [
     id: "code-box",
     title: "Code Box",
     year: "2026",
-    image: "/img/codebox.png",
+    image: `${IMAGEKIT_URL}/img/codebox.png`,
 
     techStack: [
-      {
-        name: "Next.js",
-        icon: "/icons/nextjs.svg",
-      },
-      {
-        name: "Tailwind",
-        icon: "/icons/tailwind.svg",
-      },
-      {
-        name: "Neon",
-        icon: "/icons/neon.svg",
-      },
-      {
-        name: "Drizzle",
-        icon: "/icons/drizzle.webp",
-      },
-      {
-        name: "Shadcn",
-        icon: "/icons/shadcn.webp",
-      },
-      {
-        name: "Sandpack",
-        icon: "/icons/sandpack.jpg",
-      },
-      {
-        name: "Clerk",
-        icon: "/icons/clerk.svg",
-      },
-      {
-        name: "Stripe",
-        icon: "/icons/stripe.svg",
-      },
-      {
-        name: "Vercel",
-        icon: "/icons/vercel.svg",
-      },
+      { name: "Next.js", icon: `${IMAGEKIT_URL}/icons/nextjs.svg` },
+      { name: "Tailwind", icon: `${IMAGEKIT_URL}/icons/tailwind.svg` },
+      { name: "Neon", icon: `${IMAGEKIT_URL}/icons/neon.svg` },
+      { name: "Drizzle", icon: `${IMAGEKIT_URL}/icons/drizzle.webp` },
+      { name: "Shadcn", icon: `${IMAGEKIT_URL}/icons/shadcn.webp` },
+      { name: "Sandpack", icon: `${IMAGEKIT_URL}/icons/sandpack.jpg` },
+      { name: "Clerk", icon: `${IMAGEKIT_URL}/icons/clerk.svg` },
+      { name: "Stripe", icon: `${IMAGEKIT_URL}/icons/stripe.svg` },
+      { name: "Vercel", icon: `${IMAGEKIT_URL}/icons/vercel.svg` },
     ],
 
     description:

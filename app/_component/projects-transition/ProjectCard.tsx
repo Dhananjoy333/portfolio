@@ -48,6 +48,8 @@ const PROJECT_META: Record<
   },
 };
 
+const IMAGEKIT_URL = process.env.NEXT_PUBLIC_IMAGEKIT_URL;
+
 export default function ProjectCard({
   project,
   index,
@@ -107,26 +109,26 @@ const description = project.description;
       />
 
       {/* Main content */}
-      <div className="relative z-10 p-4 sm:p-5 lg:p-6">
+      <div className="relative z-10 p-3 sm:p-4 lg:p-4 xl:p-5 2xl:p-6">
         {/* Top metadata */}
-        <div className="mb-4 flex items-center justify-between px-1">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-[11px] font-medium tracking-wider text-neutral-800">
+        <div className="mb-2.5 sm:mb-4 flex items-center justify-between px-1">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <span className="font-mono text-[10px] sm:text-[11px] font-medium tracking-wider text-neutral-800">
               {String(index + 1).padStart(2, "0")}
             </span>
 
-            <span className="h-px w-10 bg-neutral-900/30" />
+            <span className="h-px w-8 sm:w-10 bg-neutral-900/30" />
           </div>
 
-          <span className="font-mono text-[11px] font-medium tracking-wider text-neutral-700">
+          <span className="font-mono text-[10px] sm:text-[11px] font-medium tracking-wider text-neutral-700">
             {project.year}
           </span>
         </div>
 
         {/* Card grid */}
-        <div className="grid gap-6 lg:grid-cols-[1.45fr_1fr] lg:items-center lg:gap-8">
+        <div className="grid gap-3 sm:gap-5 lg:grid-cols-[1.25fr_1fr] xl:grid-cols-[1.3fr_1fr] 2xl:grid-cols-[1.45fr_1fr] lg:items-center lg:gap-6 2xl:gap-8">
           {/* Screenshot */}
-          <div className="relative aspect-16/10 overflow-hidden rounded-[20px] bg-neutral-100 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
+          <div className="relative aspect-16/10 overflow-hidden rounded-2xl sm:rounded-[20px] bg-neutral-100 shadow-[0_10px_30px_rgba(0,0,0,0.12)]">
             <Image
               src={project.image}
               alt={`${project.title} project preview`}
@@ -148,16 +150,19 @@ const description = project.description;
           </div>
 
           {/* Information */}
-          <div className="flex min-w-0 flex-col px-1 pb-2 lg:pr-5">
+          <div className="flex min-w-0 flex-col px-0.5 sm:px-1 pb-1 lg:pr-3 2xl:pr-5">
             {/* Category */}
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-3 2xl:mb-4">
               <span
                 className={`
                   inline-flex
                   rounded-full
-                  px-3
-                  py-1.5
-                  text-[10px]
+                  px-2.5
+                  py-1
+                  sm:px-3
+                  sm:py-1.5
+                  text-[9px]
+                  sm:text-[10px]
                   font-medium
                   tracking-widest
                   ${meta.pill}
@@ -168,18 +173,21 @@ const description = project.description;
             </div>
 
             {/* Title */}
-            <div className="mb-5 flex items-end justify-between gap-4">
+            <div className="mb-2 sm:mb-3 2xl:mb-4 flex items-end justify-between gap-4">
               <h2
                 className="
                   font-display
-                  text-4xl
+                  text-2xl
+                  sm:text-3xl
+                  md:text-4xl
+                  lg:text-3xl
+                  xl:text-4xl
+                  2xl:text-6xl
                   font-black
                   uppercase
                   leading-[0.85]
                   tracking-tight
                   text-neutral-950
-                  sm:text-5xl
-                  xl:text-6xl
                 "
               >
                 {project.title}
@@ -187,20 +195,25 @@ const description = project.description;
             </div>
 
             {/* Tech stack */}
-            <div className="mb-5 flex flex-wrap gap-2">
+            <div className="mb-2.5 sm:mb-3.5 2xl:mb-5 flex flex-wrap gap-1.5 sm:gap-2">
               {project.techStack.map((tech) => (
                 <div
                   key={tech.name}
                   className="
                     flex
                     items-center
-                    gap-2
+                    gap-1.5
+                    sm:gap-2
                     rounded-full
                     border
                     border-black/6
                     bg-white/65
-                    px-3
-                    py-2
+                    px-2
+                    py-1
+                    sm:px-2.5
+                    sm:py-1.5
+                    2xl:px-3
+                    2xl:py-2
                     shadow-sm
                     backdrop-blur-sm
                   "
@@ -210,10 +223,10 @@ const description = project.description;
                     alt=""
                     width={16}
                     height={16}
-                    className="h-5 w-5 object-contain"
+                    className="h-3.5 w-3.5 sm:h-4 sm:w-4 2xl:h-5 2xl:w-5 object-contain"
                   />
 
-                  <span className="text-[10px] font-medium text-neutral-800 sm:text-[11px] 2xl:text-[12px]">
+                  <span className="text-[9px] font-medium text-neutral-800 sm:text-[10px] 2xl:text-[12px]">
                     {tech.name}
                   </span>
                 </div>
@@ -223,19 +236,22 @@ const description = project.description;
             {/* Description */}
             <p
               className="
-                mb-6
+                mb-3
+                sm:mb-4
+                2xl:mb-6
                 max-w-xl
-                text-sm
+                text-xs
+                sm:text-[13px]
+                2xl:text-[15px]
                 leading-relaxed
                 text-neutral-700
-                sm:text-[15px]
               "
             >
               {description}
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -243,12 +259,18 @@ const description = project.description;
                 className="
                   inline-flex
                   items-center
-                  gap-3
+                  gap-2
+                  sm:gap-2.5
                   rounded-full
                   bg-neutral-950
-                  px-5
-                  py-3
-                  text-[10px]
+                  px-3.5
+                  py-2
+                  sm:px-4
+                  sm:py-2.5
+                  2xl:px-5
+                  2xl:py-3
+                  text-[9px]
+                  sm:text-[10px]
                   font-semibold
                   tracking-widest
                   text-white
@@ -264,7 +286,7 @@ const description = project.description;
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
-                  className="h-4 w-4"
+                  className="h-3.5 w-3.5 sm:h-4 sm:w-4"
                   stroke="currentColor"
                   strokeWidth="1.8"
                 >
@@ -283,14 +305,20 @@ const description = project.description;
                 className="
                   inline-flex
                   items-center
-                  gap-3
+                  gap-2
+                  sm:gap-2.5
                   rounded-full
                   border
                   border-neutral-900/30
                   bg-white/45
-                  px-5
-                  py-3
-                  text-[10px]
+                  px-3.5
+                  py-2
+                  sm:px-4
+                  sm:py-2.5
+                  2xl:px-5
+                  2xl:py-3
+                  text-[9px]
+                  sm:text-[10px]
                   font-semibold
                   tracking-widest
                   text-neutral-900
@@ -302,14 +330,12 @@ const description = project.description;
                 "
               >
                 GITHUB
-
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="h-4 w-4"
-                >
-                  <path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.02c-3.34.73-4.04-1.42-4.04-1.42-.55-1.4-1.34-1.77-1.34-1.77-1.09-.75.08-.74.08-.74 1.2.08 1.84 1.23 1.84 1.23 1.07 1.83 2.8 1.3 3.49.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.34-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.25 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.6-2.8 5.62-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.82.57A12 12 0 0 0 12 .5Z" />
-                </svg>
+                <Image 
+                  src={`${IMAGEKIT_URL}/icons/github.svg`}
+                  alt="github"
+                  width={16}
+                  height={16}
+                />
               </a>
             </div>
           </div>

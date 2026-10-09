@@ -95,31 +95,31 @@ export default function InfoCard({
 
       {/* Main card body */}
       <div
-        className={`relative z-10 p-6 sm:p-7 rounded-3xl border flex flex-col justify-between min-h-72.5 sm:min-h-77.5 ${variantStyles[variant]}`}
+        className={`relative z-10 p-4.5 sm:p-6 2xl:p-7 rounded-3xl border flex flex-col justify-between min-h-56 sm:min-h-68 2xl:min-h-77.5 ${variantStyles[variant]}`}
       >
         <div>
           {/* Header with number & icon */}
-          <div className="flex items-center justify-between mb-5">
-            <span className="font-mono text-xs font-semibold text-neutral-500 tracking-wider">
+          <div className="flex items-center justify-between mb-3.5 sm:mb-5">
+            <span className="font-mono text-[11px] sm:text-xs font-semibold text-neutral-500 tracking-wider">
               {number}
             </span>
           </div>
 
-          <div className="mb-4">
+          <div className="mb-3 sm:mb-4">
             <div
-              className={`w-11 h-11 rounded-2xl flex items-center justify-center ${iconBgStyles[variant]}`}
+              className={`w-9 h-9 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center ${iconBgStyles[variant]}`}
             >
               <RenderIcon type={icon} />
             </div>
           </div>
 
           {/* Title */}
-          <h3 className="font-display font-black text-2xl sm:text-[26px] uppercase tracking-tight text-neutral-900 leading-tight mb-3">
+          <h3 className="font-display font-black text-xl sm:text-2xl 2xl:text-[26px] uppercase tracking-tight text-neutral-900 leading-tight mb-2 sm:mb-3">
             {title}
           </h3>
 
           {/* Description */}
-          <p className="font-sans text-[13px] sm:text-sm text-neutral-600 leading-relaxed">
+          <p className="font-sans text-xs sm:text-[13px] 2xl:text-sm text-neutral-600 leading-relaxed">
             {description}
           </p>
         </div>

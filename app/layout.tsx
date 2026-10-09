@@ -1,4 +1,5 @@
 import { Barlow_Condensed, Cormorant_Garamond, Inter } from "next/font/google";
+import type { Metadata } from "next";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,6 +19,11 @@ const display = Barlow_Condensed({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-barlow",
 });
+
+export const metadata: Metadata = {
+  title: "Brahma Codes",
+  description: "personal portfolio",
+};
 
 export default function RootLayout({
   children,
