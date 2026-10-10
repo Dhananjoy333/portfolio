@@ -27,7 +27,7 @@ export default function AboutInfoCards() {
       number: "03",
       title: "Interests",
       description:
-        "Web development, system design, ML/DS, animations (GSAP), and exploring new technologies. I also enjoy music, movies, reading, fitness and working on fun side projects.",
+        "Web development, system design, ML/DS, animations (GSAP), and exploring new technologies. I also enjoy gaming, movies, music, reading and working on fun side projects.",
       variant: "cream" as const,
       icon: "lightbulb" as const,
       rotationClass: "-rotate-1 sm:rotate-2",

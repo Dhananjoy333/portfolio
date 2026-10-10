@@ -131,11 +131,11 @@ export default function Hero() {
           {/* Description */}
           <div className="hero-bottom text-left self-end max-w-48 md:max-lg:max-w-56 lg:max-w-52 xl:max-w-60 2xl:max-w-70">
             <p className="text-[10px] sm:text-[11px] lg:text-[9.5px] xl:text-[10.5px] 2xl:text-[16px] font-sans font-medium leading-snug lg:leading-normal text-neutral-800 tracking-tight select-none">
-              Specialized in Web Development,
+              Building modern web experiences with thoughtful design,
               <br />
-              UI/UX, Interactive Experiences,
+              smooth interactions, 
               <br />
-              and Full-Stack Applications.
+              and scalable technology.
             </p>
           </div>
 
@@ -193,8 +193,7 @@ export default function Hero() {
           {/* Description + Role */}
           <div className="flex flex-col items-end gap-1.5 sm:gap-2">
             <p className="hero-bottom text-[10px] sm:text-[11px] font-medium text-neutral-800 leading-snug max-w-48 sm:max-w-56 text-right">
-              Specialized in Web Development, UI/UX, Interactive Experiences,
-              and Full-Stack Applications.
+              Building modern web experiences with thoughtful design, smooth interactions, and scalable technology.
             </p>
 
             <div className="flex flex-col items-end hero-bottom">

@@ -66,9 +66,18 @@ export default function ContactSection() {
       setFormState({ firstName: "", lastName: "", email: "", message: "" });
       alert("Message sent successfully 🚀");
       setTimeout(() => setSubmitted(false), 5000);
-    } catch (error) {
-      console.error(error);
-      alert("Failed to send message ❌");
+    } catch (error: unknown) {
+      console.error("EmailJS error:", error);
+
+      if (error && typeof error === "object" && "text" in error) {
+        console.error("EmailJS details:", error.text);
+        alert(`Failed to send message: ${String(error.text)}`);
+      } else if (error instanceof Error) {
+        console.error("Error message:", error.message);
+        alert(`Failed to send message: ${error.message}`);
+      } else {
+        alert("Failed to send message. Check the browser console.");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -228,7 +237,7 @@ export default function ContactSection() {
             </div>
 
             {/* Headline Block: "LET'S CONNECT"*/}
-            <div className="contact-headline relative select-none">       
+            <div className="contact-headline relative select-none">
               {/* "LET'S" in elegant italic serif */}
               <span className="block font-editorial italic text-neutral-900 text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[96px] 2xl:text-[132px] leading-[0.88] tracking-tight relative z-10">
                 Let&apos;s
