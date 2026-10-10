@@ -38,7 +38,7 @@ export default function EducationSection() {
   const educationList: EducationItem[] = [
     {
       id: "edu-1",
-      year: "2016",
+      year: "2018",
       title: "10th Standard",
       institution: "The Reality Public School",
       description:
@@ -50,7 +50,7 @@ export default function EducationSection() {
     },
     {
       id: "edu-2",
-      year: "2018",
+      year: "2020",
       title: "12th Standard",
       institution: "St. Francis D'Assisi Senior Secondary School, Guwahati",
       description:
@@ -374,7 +374,7 @@ export default function EducationSection() {
               <div className="absolute right-8 flex items-center gap-1.5 select-none pr-1">
                 <div className="flex flex-col items-end">
                   <span className="font-display font-black text-3xl lg:text-4xl text-neutral-900 leading-none tracking-tight">
-                    2016
+                    2018
                   </span>
                   {/* 3 tiny sketch marks below year */}
                   <svg
@@ -538,7 +538,7 @@ export default function EducationSection() {
               {/* Year 2018 on Right */}
               <div className="absolute left-8 select-none pl-1">
                 <span className="font-display font-black text-3xl lg:text-4xl text-neutral-900 leading-none tracking-tight">
-                  2018
+                  2020
                 </span>
               </div>
             </div>
